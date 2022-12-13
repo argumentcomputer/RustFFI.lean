@@ -1,10 +1,10 @@
 [package]
-name = "lean-rust-ffi"
+name = "ffi"
 version = "0.1.0"
 edition = "2021"
 
-#[lib]
-#crate-type = ["cdylib"]
+[lib]
+crate-type = ["staticlib"]
 
 [dependencies]
 cxx = "1.0"

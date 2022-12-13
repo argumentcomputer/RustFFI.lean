@@ -1,8 +1,11 @@
 #include "lean/lean.h"
-#include "rust/cxx.h"
-#include "lean-rust-ffi/include/shim.h"
-#include "lean-rust-ffi/src/main.rs.h"
+//#include "../include/shim.h"
+//#include "../target/cxxbridge/ffi/src/lib.rs.h"
+//#include "../target/debug/libffi.a"
 
-lean_obj_res add_lean(lean_obj_arg left, lean_obj_arg right) {
+#include "ffi/include/shim.h"
+#include "ffi/src/lib.rs.h"
+
+size_t add_cpp(size_t left, size_t right) {
   return add(left, right);
 }
