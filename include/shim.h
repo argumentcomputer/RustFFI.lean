@@ -1,5 +1,5 @@
 #pragma once
 #include "rust/cxx.h"
-#include "lean/lean.h"
+#include <lean/lean.h>
 
-size_t add_cpp(size_t left, size_t right);
+uint32_t add_cpp(uint32_t left, uint32_t right);

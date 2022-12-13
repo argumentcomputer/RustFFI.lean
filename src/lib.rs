@@ -1,16 +1,16 @@
 #[cxx::bridge]
 mod ffi {
     extern "Rust" {
-        fn add(left: usize, right: usize) -> usize;
+        fn add_rust(left: u32, right: u32) -> u32;
     }
 
-    unsafe extern "C++" {
-        include!("lean/lean.h");
-        include!("ffi/include/shim.h");
-    }
+    //unsafe extern "C++" {
+    //    include!("lean/lean.h");
+    //    include!("ffi/include/shim.h");
+    //}
 }
 
-pub fn add(left: usize, right: usize) -> usize {
+pub fn add_rust(left: u32, right: u32) -> u32 {
     left + right
 }
 
