@@ -4,7 +4,7 @@ open System Lake DSL
 package «ffi» {
   srcDir := "lean"
   precompileModules := true
-  moreLinkArgs := #["-L", "./target/debug", "-l", "ffi", "-lstdc++"]
+  moreLinkArgs := #["-L", "./target/debug", "-lffi", "-lstdc++"]
 }
 
 lean_lib FFI {}
