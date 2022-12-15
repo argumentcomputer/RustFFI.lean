@@ -2,6 +2,5 @@
 /Cargo.lock
 /build
 /lean_packages/*
+/.direnv/*
 !/lean_packages/manifest.json
-flake.lock
-/.direnv
