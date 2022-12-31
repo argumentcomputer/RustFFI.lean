@@ -1,26 +1,27 @@
 import Lake
 open System Lake DSL
 
-package «ffi» {
-  srcDir := "lean"
+package FFI {
   precompileModules := true
-  moreLinkArgs := #["-L", "./target/debug", "-lffi", "-lstdc++"]
+  moreLinkArgs := #["-lsome_rust_lib", "-L", "./target/debug"]
 }
 
-lean_lib FFI {}
-
-@[default_target] lean_exe test {
+@[default_target] lean_exe ffi {
   root := `Main
 }
 
-target ffi.o (pkg : Package) : FilePath := do
-  let oFile := pkg.buildDir / "src" / "ffi.o"
-  let srcJob ← inputFile <| pkg.dir / "src" / "shim.cpp"
-  let flags := #["-I", (← getLeanIncludeDir).toString, "-I", "./target/cxxbridge", "-fPIC"]
-  buildO "shim.cpp" oFile srcJob flags "c++"
+def ffiC := "ffi.c"
+def ffiO := "ffi.o"
 
-extern_lib libffi (pkg : Package) := do
-  let name := nameToStaticLib "ffi"
-  let ffiO ← fetch <| pkg.target ``ffi.o
-  buildStaticLib (pkg.buildDir / "src" / name) #[ffiO]
+target importTarget (pkg : Package) : FilePath := do
+  let oFile := pkg.oleanDir / ffiO
+  let srcJob ← inputFile ffiC
+  buildFileAfterDep oFile srcJob fun srcFile => do
+    let flags := #["-I", (← getLeanIncludeDir).toString]
+    compileO ffiC oFile srcFile flags
+
+extern_lib rustFFI (pkg : Package) := do
+  let name := nameToStaticLib "rustffi"
+  let job ← fetch <| pkg.target ``importTarget
+  buildStaticLib (pkg.buildDir / defaultLibDir / name) #[job]
 
