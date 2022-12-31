@@ -6,8 +6,7 @@ Based on the [Lake FFI example](https://github.com/leanprover/lake/tree/master/e
 
 ## Running
 
-1. Build the Rust crate with `cargo build`
-2. Build/run `Main.lean` with `lake exe ffi`
+Build/run `Main.lean` with `lake exe ffi`
 
 It should print the result of `1 + 2`.
 
