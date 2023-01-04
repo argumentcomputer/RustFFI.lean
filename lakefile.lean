@@ -1,7 +1,7 @@
 import Lake
 open System Lake DSL
 
-package FFI where
+package RustFFI where
   moreLinkArgs := #["-lsome_rust_lib", "-L", "./target/release"]
 
 @[default_target] lean_exe ffi where

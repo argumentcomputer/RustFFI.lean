@@ -1,4 +1,4 @@
-# FFI.lean
+# RustFFI.lean
 
 A template for calling Rust functions in Lean using Lean's C FFI.
 
