@@ -1,23 +1,14 @@
 # FFI.lean
 
-A template for calling Rust functions in Lean using C/C++ FFI and the [CXX](https://cxx.rs) crate.
+A template for calling Rust functions in Lean using Lean's C FFI.
 
-Based on the [Lake FFI example](https://github.com/leanprover/lake/tree/master/examples/ffi) and [CXX demo](https://github.com/dtolnay/cxx/tree/master/demo).
+Based on the [Lake FFI example](https://github.com/leanprover/lake/tree/master/examples/ffi) and [Rust's FFI docs](https://doc.rust-lang.org/nomicon/ffi.html#calling-rust-code-from-c).
 
-## Build
+## Running
 
-```
-cargo build
-lake build
-```
+Build/run `Main.lean` with `lake exe ffi`
 
-## Run
-
-```
-lake exe test
-```
-
-should print the result of `1 + 1`
+It should print the result of `1 + 2`.
 
 ## Troubleshooting
 
