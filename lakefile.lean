@@ -25,4 +25,8 @@ extern_lib libffi (pkg : Package) := do
 extern_lib some_rust_lib (pkg : Package) := do
   proc { cmd := "cargo", args := #["build", "--release"], cwd := pkg.dir }
   let name := nameToStaticLib "some_rust_lib"
-  return (pure $ pkg.dir / "target" / "release" / name)
+  let srcPath := pkg.dir / "target" / "release" / name
+  IO.FS.createDirAll pkg.libDir
+  let tgtPath := pkg.libDir / name
+  IO.FS.writeBinFile tgtPath (← IO.FS.readBinFile srcPath)
+  return (pure tgtPath)
